@@ -1,0 +1,34 @@
+@extends('template')
+@section('konten')
+
+<div class=container >
+    <h3>Form Upload Foto</h3>
+    <div class=row>
+        
+<form action="{{ route('foto.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    pilih gambar:
+    <input type="file" name="" id=""><br><br>
+    keterangan:
+    <input type="text" name="ket" id=""><br><br>
+
+    <input type="submit" value="simpan">
+    <input type="reset" value="reset">
+
+    </form>
+    </div>
+</div>
+<br>
+<div class=row>
+    @forelse($datafoto as $foto)
+    <img src="{{ ('/gambar/'.$foto->namafile) }}" class="rounded" style="width: 200px">
+    <br>
+    {{ $foto->ket}}
+
+    @empty
+    @endforelse
+
+</div>
+
+
+@endsection
